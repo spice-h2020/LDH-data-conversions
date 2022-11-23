@@ -15,9 +15,10 @@ headers = {
 
 fullUrl = baseUrl + dataset + '?limit=' + str(limit)
 response = requests.request("GET", fullUrl, headers=headers, auth=HTTPBasicAuth(datasetKey, datasetKey))
-# responseText is the raw JSON for saving to a file
+# responseText is the raw JSON straight from the API
 responseText = response.text
-# responseObject is  aPython readable object, should you wish to iterate over teh data and manipulate it in any way
+# responseObject is a Python readable object, should you wish to iterate over the data and manipulate it in any way
+# also, we'll re-encode this object back to JSON for saving so that we can format the text with indentation
 responseObject = response.json()
 # e.g. if you'd like to print the 'name' attribute of the first document in the array:
 print(responseObject[0]['name'])
